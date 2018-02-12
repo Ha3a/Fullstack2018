@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Person from './components/Person'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3001/persons')
+      .get('http://localhost:3001/api/persons')
       .then(response => {
         this.setState({ persons: response.data })
       })
@@ -50,7 +50,7 @@ class App extends React.Component {
     if (!nameExists) {
 
       axios
-        .post('http://localhost:3001/persons', presonObject)
+        .post('http://localhost:3001/api/persons', presonObject)
         .then(response => {
           this.setState({
             persons: this.state.persons.concat(response.data),
@@ -69,7 +69,7 @@ class App extends React.Component {
 
 
   deletePerson = (id) => {
-    const request = axios.delete('http://localhost:3001/persons/', { id })
+    const request = axios.delete('http://localhost:3001/api/persons/', { id })
     return request.then(response => response.data)
 
   }
